@@ -13,12 +13,14 @@ const Home = () => {
   const [getData, setGetData] = useState([]);
   const [limit, setLimit] = useState(7);
 
+  // user list
   useEffect(() => {
     Axios.get(`http://localhost:5000/user?limit=${limit}`).then(({ data }) =>
       setGetData(data.result)
     );
   }, [limit]);
 
+  // page limit
   const fetchDataMore = () => {
     setTimeout(() => {
       setLimit(limit + 7);

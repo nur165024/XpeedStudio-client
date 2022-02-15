@@ -8,7 +8,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const UserForm = () => {
+const UserForm = ({ handleNotify }) => {
   // react route dom redirect
   let navigate = useNavigate();
   // react hook
@@ -41,6 +41,7 @@ const UserForm = () => {
     axios.post("http://localhost:5000/user", userData, {}).then((res) => {
       console.log(res.data);
       if (res.data.status) {
+        handleNotify();
         navigate("/");
       } else {
         return 0;
