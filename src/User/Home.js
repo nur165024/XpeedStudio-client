@@ -23,7 +23,7 @@ const Home = () => {
   // page limit
   const fetchDataMore = () => {
     setTimeout(() => {
-      setLimit(limit + 7);
+      setLimit(limit + 3);
     }, 1000);
   };
 
