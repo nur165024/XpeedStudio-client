@@ -14,9 +14,9 @@ const Home = () => {
   const [limit, setLimit] = useState(10);
 
   useEffect(() => {
-    Axios.get(
-      `https://jsonplaceholder.typicode.com/posts?_limit=${limit}`
-    ).then(({ data }) => setGetData(data));
+    Axios.get(`http://localhost:5000/user`).then(({ data }) =>
+      setGetData(data.result)
+    );
   }, [limit]);
 
   const fetchDataMore = () => {
@@ -41,10 +41,11 @@ const Home = () => {
           loader={limit === getData.length ? <h4>Loading...</h4> : ""}
         >
           <div className="flexData">
-            {getData.map((data) => (
-              <div className="card" key={data.id}>
-                <h2>{data.title}</h2>
-                <p>{data.body}</p>
+            {getData.map((data, index) => (
+              <div className="card" key={index + 1}>
+                <h2>Title: {data.calculateTitle}</h2>
+                <p>Calculate: {data.calculateNumber}</p>
+                <p>File: {data.filePath}</p>
               </div>
             ))}
           </div>
