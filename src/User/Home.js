@@ -11,17 +11,17 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const [getData, setGetData] = useState([]);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(7);
 
   useEffect(() => {
-    Axios.get(`http://localhost:5000/user`).then(({ data }) =>
+    Axios.get(`http://localhost:5000/user?limit=${limit}`).then(({ data }) =>
       setGetData(data.result)
     );
   }, [limit]);
 
   const fetchDataMore = () => {
     setTimeout(() => {
-      setLimit(limit + 10);
+      setLimit(limit + 7);
     }, 1000);
   };
 
@@ -40,7 +40,7 @@ const Home = () => {
           hasMore={true}
           loader={limit === getData.length ? <h4>Loading...</h4> : ""}
         >
-          <div className="flexData">
+          <div className="">
             {getData.map((data, index) => (
               <div className="card" key={index + 1}>
                 <h2>Title: {data.calculateTitle}</h2>
