@@ -21,7 +21,11 @@ const UserForm = ({ handleNotify }) => {
     const formData = new FormData();
     formData.append("file", e.target.files[0]);
     axios
-      .post("http://localhost:5000/image/upload", formData, {})
+      .post(
+        "https://xpeedstudio-server.herokuapp.com/api/image/upload",
+        formData,
+        {}
+      )
       .then((res) => {
         setCalculateNumber(res.data.data.calculateNumber);
         setFilePath(res.data.data.filePath);
@@ -38,15 +42,17 @@ const UserForm = ({ handleNotify }) => {
       filePath,
     };
     // user calculate data call api
-    axios.post("http://localhost:5000/user", userData, {}).then((res) => {
-      console.log(res.data);
-      if (res.data.status) {
-        handleNotify();
-        navigate("/");
-      } else {
-        return 0;
-      }
-    });
+    axios
+      .post("https://xpeedstudio-server.herokuapp.com/api/user", userData, {})
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.status) {
+          handleNotify();
+          navigate("/");
+        } else {
+          return 0;
+        }
+      });
   };
 
   return (

@@ -15,9 +15,9 @@ const Home = () => {
 
   // user list
   useEffect(() => {
-    Axios.get(`http://localhost:5000/user?limit=${limit}`).then(({ data }) =>
-      setGetData(data.result)
-    );
+    Axios.get(
+      `https://xpeedstudio-server.herokuapp.com/api/user?limit=${limit}`
+    ).then(({ data }) => setGetData(data.result));
   }, [limit]);
 
   // page limit
